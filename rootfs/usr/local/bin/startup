@@ -1,0 +1,31 @@
+#!/bin/sh
+
+addgroup -g ${GID} diaspora && adduser -H -s /bin/sh -D -G diaspora -u ${UID} diaspora
+
+if [ ! -f /config/database.yml ]; then
+  cp /diaspora/config/database.yml.example /config/database.yml
+  echo "/config/database.yml not found please configure it and restart your container"
+  sleep
+fi
+
+if [ ! -f /config/diaspora.yml ]; then
+  cp /diaspora/config/diaspora.yml.example /config/diaspora.yml
+  echo "/config/diaspora.yml not found please configure it and restart your container"
+  sleep
+fi
+
+ln -s /config/database.yml /diaspora/config/database.yml
+ln -s /config/diaspora.yml /diaspora/config/diaspora.yml
+chown -R diaspora:diaspora /diaspora
+cd /diaspora
+exec su-exec diaspora:diaspora  script/configure_bundler
+exec su-exec diaspora:diaspora  bin/bundle install
+RAILS_ENV=production bin/rake db:create db:migrate
+RAILS_ENV=production bin/rake assets:precompile
+
+if [ '$@' == '' ]; then
+    exec su-exec diaspora:diaspora /bin/s6-svscan /etc/s6.d
+else
+    exec su-exec diaspora:diaspora "$@"
+fi
+

@@ -1,3 +1,4 @@
+FROM ruby:2.4.2-alpine3.6
 FROM xataz/nginx
 
 ENV UID=991 GID=991 \

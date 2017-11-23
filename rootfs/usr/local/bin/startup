@@ -16,7 +16,7 @@ ln -s /config/database.yml /diaspora/config/database.yml
 ln -s /config/diaspora.yml /diaspora/config/diaspora.yml
 chown -R diaspora:diaspora /diaspora
 cd /diaspora
-
+bin/bundle config --global silence_root_warning 1
 bin/bundle install --retry 4 --without test development
 ./script/configure_bundler 
 

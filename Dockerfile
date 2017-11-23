@@ -9,6 +9,7 @@ RUN export BUILD_DEPS="build-base \
 					    curl-dev \
 					    git \
 					    ruby-dev \
+					    libffi-dev \
 					    imagemagick-dev" \
 && apk add -U  ${BUILD_DEPS} \
 		   libressl \
@@ -24,6 +25,7 @@ RUN export BUILD_DEPS="build-base \
 		   gcc \
 		   nodejs \
 		   nodejs-npm \
+		   libffi \
 		   ruby \
 		   ruby-irb \
 		   ruby-rdoc \

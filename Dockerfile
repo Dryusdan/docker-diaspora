@@ -32,7 +32,6 @@ RUN export BUILD_DEPS="build-base \
 && chmod +x script/server \
 && bin/bundle config --global silence_root_warning 1 \
 && bin/bundle config timeout 120 \
-&& gem install sigar -- --with-cppflags="-fgnu89-inline" \
 && bin/bundle install --retry 4 --without test development  \
 && apk del ${BUILD_DEPS} \
 && rm -rf /tmp/* /var/cache/apk/* /tmp/* /root/.gnupg /root/.cache/ /diaspora/.git

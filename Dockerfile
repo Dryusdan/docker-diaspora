@@ -8,7 +8,7 @@ RUN export BUILD_DEPS="build-base \
 					    curl-dev \
 					    git \
 					    imagemagick-dev" \
-apk add -U ${BUILD_DEPS} \
+apk -U add ${BUILD_DEPS} \
 		   libressl \
 		   imagemagick \
 		   curl \

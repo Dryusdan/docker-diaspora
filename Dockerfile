@@ -1,4 +1,4 @@
-FROM ruby:2.4.2-alpine3.6
+FROM xataz/nginxx
 
 ENV UID=991 GID=991 \
 	 NPROC=2
@@ -21,16 +21,21 @@ RUN export BUILD_DEPS="build-base \
 		   ca-certificates \
 		   coreutils \
 		   gcc \
+		   nodejs \
+		   nodejs-npm \
+		   ruby \
+		   ruby-irb \
+		   ruby-rdoc \
 && gem install bundler \
 && git clone -b master https://github.com/diaspora/diaspora.git /diaspora \
 && cd /diaspora \
 && chmod +x script/server \
 && bin/bundle config --global silence_root_warning 1 \
 && bin/bundle config timeout 120 \
+&& gem install sigar -- --with-cppflags="-fgnu89-inline" \
 && bin/bundle install --retry 4 --without test development  \
 && apk del ${BUILD_DEPS} \
 && rm -rf /tmp/* /var/cache/apk/* /tmp/* /root/.gnupg /root/.cache/ /diaspora/.git
-
 
 
 COPY rootfs/ /

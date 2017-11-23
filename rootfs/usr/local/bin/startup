@@ -1,6 +1,6 @@
 #!/bin/sh
 
-addgroup -g ${GID} diaspora && adduser -H -s /bin/sh -D -G diaspora -u ${UID} diaspora
+addgroup -g ${GID} diaspora && adduser -h /diaspora -s /bin/sh -D -G diaspora -u ${UID} diaspora
 
 if [ ! -f /config/database.yml ]; then
   cp /diaspora/config/database.yml.example /config/database.yml

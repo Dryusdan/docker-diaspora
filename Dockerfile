@@ -26,7 +26,7 @@ RUN export BUILD_DEPS="build-base \
 		   nodejs \
 		   nodejs-npm \
 		   libffi \
-		   sigar \
+		   libintl \
 		   ruby \
 		   ruby-irb \
 		   ruby-rdoc \

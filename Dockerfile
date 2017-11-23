@@ -30,7 +30,7 @@ RUN export BUILD_DEPS="build-base \
 && rm -rf /tmp/* /var/cache/apk/* /tmp/* /root/.gnupg /root/.cache/ /diaspora/.git
 
 COPY rootfs/ /
-VOLUME  ["/config", "/public"]
+VOLUME  ["/config", "/diaspora/public"]
 EXPOSE 3000
 ENTRYPOINT [ "/usr/local/bin/startup" ]
 CMD ["/bin/s6-svscan", "/etc/s6.d"]

@@ -30,6 +30,6 @@ apk add -U ${BUILD_DEPS} \
 && rm -rf /tmp/* /var/cache/apk/* /tmp/* /root/.gnupg /root/.cache/ /diaspora/.git
 
 COPY rootfs/ /
-VOLUMES ["/config"]
+VOLUME  ["/config", "public"]
 ENTRYPOINT [ "/usr/local/bin/startup" ]
 CMD ["/bin/s6-svscan", "/etc/s6.d"]

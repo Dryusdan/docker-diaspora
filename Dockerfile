@@ -1,6 +1,7 @@
 FROM xataz/nginx
 
-ENV UID=991 GID=991
+ENV UID=991 GID=991 \
+	 NPROC=2
 
 RUN export BUILD_DEPS="build-base \
 					    libxml2-dev \

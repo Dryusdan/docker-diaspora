@@ -4,18 +4,18 @@ addgroup -g ${GID} diaspora && adduser -H -s /bin/sh -D -G diaspora -u ${UID} di
 
 if [ ! -f /config/database.yml ]; then
   cp /diaspora/config/database.yml.example /config/database.yml
-  echo "/config/database.yml not found please configure it and restart your container"
-  sleep
+  ln -s /config/database.yml /diaspora/config/database.yml
+  read -p "/config/database.yml not found please configure it and restart your container"
 fi
 
 if [ ! -f /config/diaspora.yml ]; then
   cp /diaspora/config/diaspora.yml.example /config/diaspora.yml
-  echo "/config/diaspora.yml not found please configure it and restart your container"
-  sleep
+  ln -s /config/diaspora.yml /diaspora/config/diaspora.yml
+  read -p "/config/diaspora.yml not found please configure it and restart your container"
 fi
 
-ln -s /config/database.yml /diaspora/config/database.yml
-ln -s /config/diaspora.yml /diaspora/config/diaspora.yml
+
+
 chown -R diaspora:diaspora /diaspora
 cd /diaspora
 exec su-exec diaspora:diaspora  script/configure_bundler

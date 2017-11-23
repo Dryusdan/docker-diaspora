@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM xataz/nginx
 
 ENV UID=991 GID=991
 

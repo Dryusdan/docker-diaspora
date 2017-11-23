@@ -31,5 +31,6 @@ apk add -U ${BUILD_DEPS} \
 
 COPY rootfs/ /
 VOLUME  ["/config", "public"]
+EXPOSE 3000
 ENTRYPOINT [ "/usr/local/bin/startup" ]
 CMD ["/bin/s6-svscan", "/etc/s6.d"]

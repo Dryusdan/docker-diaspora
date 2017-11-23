@@ -30,6 +30,8 @@ RUN export BUILD_DEPS="build-base \
 && git clone -b master https://github.com/diaspora/diaspora.git /diaspora \
 && cd /diaspora \
 && chmod +x script/server \
+&& bin/bundle config --global silence_root_warning 1 \
+&& bin/bundle install --retry 4 --without test development \
 && apk del ${BUILD_DEPS} \
 && rm -rf /tmp/* /var/cache/apk/* /tmp/* /root/.gnupg /root/.cache/ /diaspora/.git
 

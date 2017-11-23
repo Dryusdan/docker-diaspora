@@ -16,7 +16,8 @@ ln -s /config/database.yml /diaspora/config/database.yml
 ln -s /config/diaspora.yml /diaspora/config/diaspora.yml
 chown -R diaspora:diaspora /diaspora
 cd /diaspora
-su-exec diaspora:diaspora  script/configure_bundler && bin/bundle install
+./script/configure_bundler 
+bin/bundle install --retry 4
 
 RAILS_ENV=production bin/rake db:create db:migrate
 RAILS_ENV=production bin/rake assets:precompile

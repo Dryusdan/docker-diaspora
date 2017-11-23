@@ -10,6 +10,8 @@ RUN export BUILD_DEPS="build-base \
 					    git \
 					    ruby-dev \
 					    libffi-dev \
+					    libc-dev \
+					    libtirpc-dev \
 					    imagemagick-dev" \
 && apk add -U  ${BUILD_DEPS} \
 		   libressl \

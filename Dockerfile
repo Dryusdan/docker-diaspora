@@ -18,8 +18,6 @@ RUN export BUILD_DEPS="build-base \
 		   ghostscript \
 		   git \
 		   postgresql-client \
-		   nodejs \
-		   nodejs-npm \
 		   su-exec \
 		   s6 \
 		   ca-certificates \

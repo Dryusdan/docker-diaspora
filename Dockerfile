@@ -8,6 +8,7 @@ RUN export BUILD_DEPS="build-base \
 					    libxslt-dev \
 					    curl-dev \
 					    git \
+					    ruby-dev \
 					    imagemagick-dev" \
 && apk add -U  ${BUILD_DEPS} \
 		   libressl \

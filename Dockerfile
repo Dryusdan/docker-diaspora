@@ -39,6 +39,6 @@ RUN chmod +x /usr/local/bin/startup \
 	&& chmod +x /etc/s6.d/diaspora/run
 	
 VOLUME  ["/config", "/diaspora/public"]
-EXPOSE 3000
+EXPOSE 8080
 ENTRYPOINT [ "/usr/local/bin/startup" ]
 CMD ["/bin/s6-svscan", "/etc/s6.d"]

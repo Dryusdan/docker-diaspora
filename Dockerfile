@@ -1,6 +1,6 @@
-FROM ruby:2.4.2-alpine3.6
 FROM node:8.9-alpine
 FROM xataz/nginx
+FROM ruby:2.4.2-alpine3.6
 
 ENV UID=991 GID=991 \
 	 NPROC=2

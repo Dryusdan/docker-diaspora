@@ -1,4 +1,5 @@
 FROM ruby:2.4.2-alpine3.6
+FROM node:8.9-alpine
 FROM xataz/nginx
 
 ENV UID=991 GID=991 \
@@ -19,9 +20,6 @@ RUN export BUILD_DEPS="build-base \
 		   postgresql-client \
 		   nodejs \
 		   nodejs-npm \
-		   ruby \
-		   ruby-irb \
-		   ruby-rdoc \
 		   su-exec \
 		   s6 \
 		   ca-certificates \

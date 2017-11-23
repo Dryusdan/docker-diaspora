@@ -1,4 +1,4 @@
-FROM xataz/nginxx
+FROM xataz/nginx
 
 ENV UID=991 GID=991 \
 	 NPROC=2

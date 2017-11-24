@@ -31,9 +31,6 @@ RUN export BUILD_DEPS="build-base \
 		   ruby \
 		   ruby-irb \
 		   ruby-rdoc \
-&& git clone https://github.com/AlexYaruki/sigar.git /tmp/sigar \
-&& cd /tmp/sigar \
-&& cmake \
 && gem install bundler \
 && git clone -b master https://github.com/diaspora/diaspora.git /diaspora \
 && cd /diaspora \

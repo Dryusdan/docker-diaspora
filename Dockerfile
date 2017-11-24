@@ -31,8 +31,7 @@ RUN export BUILD_DEPS="build-base \
 && gem install bundler \
 && git clone -b master https://github.com/diaspora/diaspora.git /diaspora \
 && cd /diaspora \
-&& rm Gemfile.lock \	
-&& gem 'eye', '~> 0.9.2.nosigar' \
+&& sed -i -e "s/gem \"eye\", \"0.9.2\"/gem \"eye\", \"~> 0.9.2.nosigar\"/g" Gemfile \ 
 && chmod +x script/server \
 && bin/bundle config --global silence_root_warning 1 \
 && bin/bundle config timeout 120 \

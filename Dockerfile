@@ -9,8 +9,6 @@ RUN export BUILD_DEPS="build-base \
 					    curl-dev \
 					    git \
 					    ruby-dev \
-					    libffi-dev \
-					    libc-dev \
 					    libtirpc-dev \
 					    imagemagick-dev" \
 && apk add -U  ${BUILD_DEPS} \
@@ -27,15 +25,15 @@ RUN export BUILD_DEPS="build-base \
 		   gcc \
 		   nodejs \
 		   nodejs-npm \
-		   libffi \
-		   libintl \
 		   ruby \
 		   ruby-irb \
 		   ruby-rdoc \
 && gem install bundler \
 && git clone -b master https://github.com/diaspora/diaspora.git /diaspora \
 && cd /diaspora \
-&& sed -i -e "s/sigar (~> 0.7.3)/csigar (~> 0.7.6)/g" Gemfile.lock \ 
+&& gem 'csigar', '~> 0.7.6' \
+&& rm Gemfile.lock \
+&& gem 'eye', '~> 0.9.2.nosigar' \
 && chmod +x script/server \
 && bin/bundle config --global silence_root_warning 1 \
 && bin/bundle config timeout 120 \

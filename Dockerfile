@@ -34,20 +34,17 @@ RUN export BUILD_DEPS="build-base \
 && git clone -b master https://github.com/diaspora/diaspora.git /diaspora \
 && cd /diaspora \
 && rm Gemfile.lock \
-&& gem uninstall eye \
-&& gem install eye -v 0.9.2.nosigar \
-&& chmod +x script/server \
-&& bin/bundle config --global silence_root_warning 1 \
-&& bin/bundle config timeout 120 \
-&& bin/bundle install --retry 4 --without test development  \
-&& apk del ${BUILD_DEPS} \
-&& rm -rf /tmp/* /var/cache/apk/* /tmp/* /root/.gnupg /root/.cache/ /diaspora/.git
-
+&& chmod +x script/server 
 
 COPY rootfs/ /
 
-RUN chmod +x /usr/local/bin/startup \
-	&& chmod +x /etc/s6.d/diaspora/run
+RUN bin/bundle config --global silence_root_warning 1 \
+&& bin/bundle config timeout 120 \
+&& bin/bundle install --retry 4 --without test development  \
+&& apk del ${BUILD_DEPS} \
+&& rm -rf /tmp/* /var/cache/apk/* /tmp/* /root/.gnupg /root/.cache/ /diaspora/.git \
+&& chmod +x /usr/local/bin/startup \
+&& chmod +x /etc/s6.d/diaspora/run
 	
 VOLUME  ["/config", "/diaspora/public"]
 EXPOSE 8080

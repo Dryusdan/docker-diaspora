@@ -11,8 +11,7 @@ RUN export BUILD_DEPS="build-base \
 					    ruby-dev \
 					    libffi-dev \
 					    libtirpc-dev \
-					    imagemagick-dev \
-						cmake " \
+					    imagemagick-dev " \
 && apk add -U  ${BUILD_DEPS} \
 		   libressl \
 		   imagemagick \
@@ -31,6 +30,9 @@ RUN export BUILD_DEPS="build-base \
 		   ruby \
 		   ruby-irb \
 		   ruby-rdoc \
+&& git clone https://github.com/AlexYaruki/sigar.git /tmp/sigar \
+&& cd /tmp/sigar/bindings/ruby \
+&& rake \
 && gem install bundler \
 && git clone -b master https://github.com/diaspora/diaspora.git /diaspora \
 && cd /diaspora \

@@ -38,7 +38,8 @@ RUN export BUILD_DEPS="build-base \
 
 COPY rootfs/ /
 
-RUN bin/bundle config --global silence_root_warning 1 \
+RUN cd /diaspora \
+&& bin/bundle config --global silence_root_warning 1 \
 && bin/bundle config timeout 120 \
 && bin/bundle install --retry 4 --without test development  \
 && apk del ${BUILD_DEPS} \

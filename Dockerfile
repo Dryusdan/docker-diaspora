@@ -34,7 +34,7 @@ RUN export BUILD_DEPS="build-base \
 && git clone -b master https://github.com/diaspora/diaspora.git /diaspora \
 && cd /diaspora \
 && gem uninstall eye \
-&& gem install eye -v 0.9.2.signar \
+&& gem install eye -v 0.9.2.nosignar \
 && chmod +x script/server \
 && bin/bundle config --global silence_root_warning 1 \
 && bin/bundle config timeout 120 \

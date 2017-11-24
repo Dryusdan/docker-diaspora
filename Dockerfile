@@ -9,6 +9,7 @@ RUN export BUILD_DEPS="build-base \
 					    curl-dev \
 					    git \
 					    ruby-dev \
+					    libffi-dev \
 					    libtirpc-dev \
 					    imagemagick-dev" \
 && apk add -U  ${BUILD_DEPS} \

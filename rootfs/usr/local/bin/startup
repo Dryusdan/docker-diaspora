@@ -1,6 +1,8 @@
 #!/bin/sh
 
-addgroup -g ${GID} diaspora && adduser -h /diaspora -s /bin/sh -D -G diaspora -u ${UID} diaspora
+groupadd -g ${GID} diaspora && useradd -u ${UID} -M -g ${GID} diaspora --home /diaspora
+
+#addgroup -g ${GID} diaspora && adduser -h /diaspora -s /bin/sh -D -G diaspora -u ${UID} diaspora
 
 if [ ! -f /config/database.yml ]; then
   cp /diaspora/config/database.yml.example /config/database.yml
@@ -21,9 +23,11 @@ cd /diaspora
 RAILS_ENV=production bin/rake db:create db:migrate
 RAILS_ENV=production bin/rake assets:precompile
 
-if [ '$@' == '' ]; then
-    exec su-exec diaspora:diaspora /bin/s6-svscan /etc/s6.d
-else
-    exec su-exec diaspora:diaspora "$@"
-fi
+su - diaspora -c "./script/server"
+
+#if [ '$#' == '' ]; then
+#    su - diaspora -c "./script/server"
+#else
+#    su - diaspora -c ""
+#fi
 

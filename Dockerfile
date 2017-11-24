@@ -20,6 +20,7 @@ RUN echo "deb http://ftp.debian.org/debian jessie-backports main contrib non-fre
 	      ghostscript \
 	      git \
 	      nginx-light \
+	      dnsutils \
 && curl -sL https://deb.nodesource.com/setup_6.x | bash - \
 && apt-get -y install -y nodejs --no-install-recommends \
 && gem install bundler \

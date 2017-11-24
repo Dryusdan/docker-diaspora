@@ -30,13 +30,12 @@ RUN export BUILD_DEPS="build-base \
 		   ruby \
 		   ruby-irb \
 		   ruby-rdoc \
-		   sigar \
 && gem install bundler \
 && git clone -b master https://github.com/diaspora/diaspora.git /diaspora \
 && cd /diaspora \
 && rm Gemfile.lock \
 && chmod +x script/server \
-&& sed -i -e "s/gem \"eye\", \"0.9.2\"/gem \"eye\", \"~> 0.9.2.nosignar\"/g" Gemfile \
+&& gem install sigar -- --with-cppflags="-fgnu89-inline" \
 && echo "**** GEMFILE ****" \
 && cat Gemfile \
 && bin/bundle config --global silence_root_warning 1 \

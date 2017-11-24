@@ -11,7 +11,8 @@ RUN export BUILD_DEPS="build-base \
 					    ruby-dev \
 					    libffi-dev \
 					    libtirpc-dev \
-					    imagemagick-dev" \
+					    imagemagick-dev
+						cmake " \
 && apk add -U  ${BUILD_DEPS} \
 		   libressl \
 		   imagemagick \

@@ -36,6 +36,8 @@ RUN export BUILD_DEPS="build-base \
 && rm Gemfile.lock \
 && chmod +x script/server \
 && sed -i -e "s/gem \"eye\", \"0.9.2\"/gem \"eye\", \"~> 0.9.2.nosignar\"/g" Gemfile \
+&& echo "**** GEMFILE ****" \
+&& cat Gemfile \
 && bin/bundle config --global silence_root_warning 1 \
 && bin/bundle config timeout 120 \
 && bin/bundle install --retry 4 --without test development  \

@@ -34,11 +34,8 @@ RUN export BUILD_DEPS="build-base \
 && git clone -b master https://github.com/diaspora/diaspora.git /diaspora \
 && cd /diaspora \
 && rm Gemfile.lock \
-&& chmod +x script/server 
-
-COPY rootfs/ /
-
-RUN cd /diaspora \
+&& chmod +x script/server \
+&& sed -i -e "s/gem \"eye\", \"0.9.2\"/gem \"eye\", \"~> 0.9.2.nosignar\"/g" Gemfile \
 && bin/bundle config --global silence_root_warning 1 \
 && bin/bundle config timeout 120 \
 && bin/bundle install --retry 4 --without test development  \
@@ -46,6 +43,8 @@ RUN cd /diaspora \
 && rm -rf /tmp/* /var/cache/apk/* /tmp/* /root/.gnupg /root/.cache/ /diaspora/.git \
 && chmod +x /usr/local/bin/startup \
 && chmod +x /etc/s6.d/diaspora/run
+
+COPY rootfs/ /
 	
 VOLUME  ["/config", "/diaspora/public"]
 EXPOSE 8080

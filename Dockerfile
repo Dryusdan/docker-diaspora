@@ -30,6 +30,7 @@ RUN export BUILD_DEPS="build-base \
 		   ruby \
 		   ruby-irb \
 		   ruby-rdoc \
+		   ruby-rake \
 && git clone https://github.com/AlexYaruki/sigar.git /tmp/sigar \
 && cd /tmp/sigar/bindings/ruby \
 && rake \

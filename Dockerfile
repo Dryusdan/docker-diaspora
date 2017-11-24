@@ -35,6 +35,7 @@ RUN export BUILD_DEPS="build-base \
 && gem install bundler \
 && git clone -b master https://github.com/diaspora/diaspora.git /diaspora \
 && cd /diaspora \
+&& sed -i -e "s/sigar (~> 0.7.3)/csigar (~> 0.7.6)/g" Gemfile.lock \ 
 && chmod +x script/server \
 && bin/bundle config --global silence_root_warning 1 \
 && bin/bundle config timeout 120 \

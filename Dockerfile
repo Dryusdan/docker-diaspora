@@ -30,17 +30,19 @@ RUN export BUILD_DEPS="build-base \
 		   ruby \
 		   ruby-irb \
 		   ruby-rdoc \
+&& git clone https://github.com/AlexYaruki/sigar.git /tmp/sigar \
+&& cd /tmp/sigar \
+&& cmake \
 && gem install bundler \
 && git clone -b master https://github.com/diaspora/diaspora.git /diaspora \
 && cd /diaspora \
 && rm Gemfile.lock \
 && chmod +x script/server \
-&& gem install sigar -- --with-cppflags="-fgnu89-inline" \
 && echo "**** GEMFILE ****" \
 && cat Gemfile \
 && bin/bundle config --global silence_root_warning 1 \
 && bin/bundle config timeout 120 \
-&& bin/bundle install --retry 4 --without test development  \
+&& bin/bundle install --jobs $(nproc) --retry 4 --without test development --with postgresql \
 && apk del ${BUILD_DEPS} \
 && rm -rf /tmp/* /var/cache/apk/* /tmp/* /root/.gnupg /root/.cache/ /diaspora/.git \
 && chmod +x /usr/local/bin/startup \

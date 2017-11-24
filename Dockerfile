@@ -30,6 +30,7 @@ RUN export BUILD_DEPS="build-base \
 		   ruby \
 		   ruby-irb \
 		   ruby-rdoc \
+		   sigar \
 && gem install bundler \
 && git clone -b master https://github.com/diaspora/diaspora.git /diaspora \
 && cd /diaspora \
